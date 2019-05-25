@@ -26,7 +26,7 @@ class tipoAccion_controller extends REST_Controller
         );
         $list = $this->clTipoAccion->getListaTipoAcciones($data);
         if(!is_null($list)){
-            $this->response(array('resp' => $list),200);
+            $this->response($list,200);
         }else {
             $this->response(array('resp'=>'No hay registros'),404);
         }
