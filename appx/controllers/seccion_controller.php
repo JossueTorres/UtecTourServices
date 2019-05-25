@@ -4,34 +4,32 @@ use Restserver\Libraries\REST_Controller;
 require APPPATH . '/libraries/Format.php';
 require APPPATH . '/config/rest.php';
 require APPPATH . '/libraries/REST_Controller.php';
-class edificios_controller extends REST_Controller
+class seccion_controller extends REST_Controller
 {
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('clEdificios');
+        $this->load->model('clSeccion');
     }
 
-    //API -  Regresa todos los edificios con opción de top
-    function listaEdificios_get()
+    //API -  Regresa todos los registros
+    function listaSecciones_get()
     {
         $cod = $this->post('txtCod');
-        $nom = $this->post('txtNom');
+        $edf = $this->post('ddlEdf');
         $orde = $this->post('txtOrd');
+        $nom = $this->post('txtNom');        
         $lat = $this->post('txtLat');
-        $lon = $this->post('txtLon');
-        $acr = $this->post('txtAcr');
-        $img = $this->post('txtImg');
+        $lon = $this->post('txtLon');        
         $filtros = array(
             'cod' => $cod,
-            'nom' => $nom,
+            'edf' => $edf,
             'orde' => $orde,
+            'nom' => $nom,            
             'lat' => $lat,
             'lon' => $lon,
-            'acr' => $acr,
-            'img' => $img,
         );
-        $list = $this->clEdificios->getEdificios($filtros);
+        $list = $this->clSeccion->getListaSeccion($filtros);
         if ($list) {
             $result = array('resp' => $list);
             $this->response($result, REST_Controller::HTTP_OK);
@@ -44,31 +42,24 @@ class edificios_controller extends REST_Controller
     function guardarDatos_post()
     {
         $cod = $this->post('txtCod');
-        $nom = $this->post('txtNom');
+        $edf = $this->post('ddlEdf');
         $orde = $this->post('txtOrd');
+        $nom = $this->post('txtNom');        
         $lat = $this->post('txtLat');
-        $lon = $this->post('txtLon');
-        $acr = $this->post('txtAcr');
-        $img = $this->post('txtImg');
+        $lon = $this->post('txtLon');        
         $data = array(
             'cod' => $cod,
-            'nom' => $nom,
+            'edf' => $edf,
             'orde' => $orde,
+            'nom' => $nom,            
             'lat' => $lat,
-            'lon' => $lon,
-            'acr' => $acr,
-            'img' => $img,
+            'lon' => $lon
         );
-        $result = $this->clEdificios->guardarDatos($cod, $data);
+        $result = $this->clSeccion->guardarDatos($cod, $data);
         if ($result)
             $this->response(array('status' => 'Registro se guardo correctamente'), REST_Controller::HTTP_OK);
         else
-            $this->response(array('status' => 'fallo'), REST_Controller::HTTP_NOT_FOUND);
-        // if (empty($result)) {
-        //     $this->response("No se puede insertar/recuperar el registro", REST_Controller::HTTP_NOT_FOUND);
-        // } else {
-        //     $this->response($result, REST_Controller::HTTP_OK);
-        // }
+            $this->response(array('status' => 'fallo'), REST_Controller::HTTP_NOT_FOUND);        
     }
 
     //API - Borra registros
@@ -78,7 +69,7 @@ class edificios_controller extends REST_Controller
         if (!$id) {
             $this->response("Parámetro Perdido", REST_Controller::HTTP_NOT_FOUND);
         }        
-        if ($result = $this->clEdificios->borrarDatos($id)) {
+        if ($result = $this->clSeccion->borrarDatos($id)) {
             $this->response("Elminado Correctamente. ", REST_Controller::HTTP_OK);
         } else {
             $this->response("Error al Eliminar", REST_Controller::HTTP_BAD_REQUEST);

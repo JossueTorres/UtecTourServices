@@ -53,8 +53,37 @@ $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-$route['Edificios/listaEdificios']['GET'] = 'edificios_controller/listaEdificios';
-$route['Edificios/borrarDatos']['delete'] = 'edificios_controller/borrarDatos';
-// $route['Edificios/guardarDatos']['post'] = 'edificios_controller/guardarDatos';
+//Routes Edificios
+$route['Edificios/listado']['GET'] = 'edificios_controller/listaEdificios';
 $route['Edificios/guardarDatos']['POST'] = 'edificios_controller/guardarDatos';
-$route['Edificios/listaEdificios_fil']['GET'] = 'edificios_controller/listaEdificios_fil'; ///(:num)/(:num)/(:any)/(:num)/(:num)/(:num)/(:any)     /$t/$c/$n/$o/$l/$lo/$a
+$route['Edificios/borrarDatos']['POST'] = 'edificios_controller/borrarDatos';
+
+//Routes Seccion
+$route['Seccion/listado']['GET'] = 'seccion_controller/listaSecciones';
+$route['Seccion/guardarDatos']['POST'] = 'seccion_controller/guardarDatos';
+$route['Seccion/borrarDatos']['POST'] = 'seccion_controller/borrarDatos';
+
+//Routes Tipo Accion
+$route['TAccion/listado']['GET'] = 'tipoAccion_controller/listaTiposAcciones';
+$route['TAccion/guardarDatos']['POST'] = 'tipoAccion_controller/guardarDatos';
+$route['TAccion/borrarDatos']['POST'] = 'tipoAccion_controller/borrarDatos';
+
+//Routes idiomas
+$route['Idiomas/listado']['GET'] = 'idiomas_controller/listaIdiomas';
+$route['Idiomas/guardarDatos']['POST'] = 'idiomas_controller/guardarDatos';
+$route['Idiomas/borrarDatos']['POST'] = 'idiomas_controller/borrarDatos';
+
+//Routes idiomas
+$route['Texto/listado']['GET'] = 'texto_controller/listaTextos';
+$route['Texto/guardarDatos']['POST'] = 'texto_controller/guardarDatos';
+$route['Texto/borrarDatos']['POST'] = 'texto_controller/borrarDatos';
+
+//Routes Recursos
+$route['Recursos/listado']['GET'] = 'recurso_controller/listaRecursos';
+$route['Recursos/guardarDatos']['POST'] = 'recurso_controller/guardarDatos';
+$route['Recursos/borrarDatos']['POST'] = 'recurso_controller/borrarDatos';
+
+//Routes usuarios
+$route['Usuarios/listado']['GET'] = 'usuarios_controller/listaUsuarios';
+$route['Usuarios/guardarDatos']['POST'] = 'usuarios_controller/guardarDatos';
+$route['Usuarios/borrarDatos']['POST'] = 'usuarios_controller/borrarDatos';

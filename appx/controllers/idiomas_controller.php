@@ -4,34 +4,28 @@ use Restserver\Libraries\REST_Controller;
 require APPPATH . '/libraries/Format.php';
 require APPPATH . '/config/rest.php';
 require APPPATH . '/libraries/REST_Controller.php';
-class edificios_controller extends REST_Controller
+class idiomas_controller extends REST_Controller
 {
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('clEdificios');
+        $this->load->model('clIdiomas');
     }
 
-    //API -  Regresa todos los edificios con opción de top
-    function listaEdificios_get()
+    //API -  Regresa todos los registros
+    function listaIdiomas_get()
     {
         $cod = $this->post('txtCod');
         $nom = $this->post('txtNom');
-        $orde = $this->post('txtOrd');
-        $lat = $this->post('txtLat');
-        $lon = $this->post('txtLon');
-        $acr = $this->post('txtAcr');
-        $img = $this->post('txtImg');
+        $ico = $this->post('txtIco');
+        $aud = $this->post('txtAud');             
         $filtros = array(
             'cod' => $cod,
             'nom' => $nom,
-            'orde' => $orde,
-            'lat' => $lat,
-            'lon' => $lon,
-            'acr' => $acr,
-            'img' => $img,
-        );
-        $list = $this->clEdificios->getEdificios($filtros);
+            'ico' => $ico,            
+            'aud' => $aud 
+          );
+        $list = $this->clIdiomas->getListaIdiomas($filtros);
         if ($list) {
             $result = array('resp' => $list);
             $this->response($result, REST_Controller::HTTP_OK);
@@ -45,30 +39,19 @@ class edificios_controller extends REST_Controller
     {
         $cod = $this->post('txtCod');
         $nom = $this->post('txtNom');
-        $orde = $this->post('txtOrd');
-        $lat = $this->post('txtLat');
-        $lon = $this->post('txtLon');
-        $acr = $this->post('txtAcr');
-        $img = $this->post('txtImg');
+        $ico = $this->post('txtIco');
+        $aud = $this->post('txtAud');             
         $data = array(
             'cod' => $cod,
             'nom' => $nom,
-            'orde' => $orde,
-            'lat' => $lat,
-            'lon' => $lon,
-            'acr' => $acr,
-            'img' => $img,
-        );
-        $result = $this->clEdificios->guardarDatos($cod, $data);
+            'ico' => $ico,            
+            'aud' => $aud 
+          );
+        $result = $this->clIdiomas->guardarDatos($cod, $data);
         if ($result)
             $this->response(array('status' => 'Registro se guardo correctamente'), REST_Controller::HTTP_OK);
         else
-            $this->response(array('status' => 'fallo'), REST_Controller::HTTP_NOT_FOUND);
-        // if (empty($result)) {
-        //     $this->response("No se puede insertar/recuperar el registro", REST_Controller::HTTP_NOT_FOUND);
-        // } else {
-        //     $this->response($result, REST_Controller::HTTP_OK);
-        // }
+            $this->response(array('status' => 'fallo'), REST_Controller::HTTP_NOT_FOUND);        
     }
 
     //API - Borra registros
@@ -78,7 +61,7 @@ class edificios_controller extends REST_Controller
         if (!$id) {
             $this->response("Parámetro Perdido", REST_Controller::HTTP_NOT_FOUND);
         }        
-        if ($result = $this->clEdificios->borrarDatos($id)) {
+        if ($result = $this->clIdiomas->borrarDatos($id)) {
             $this->response("Elminado Correctamente. ", REST_Controller::HTTP_OK);
         } else {
             $this->response("Error al Eliminar", REST_Controller::HTTP_BAD_REQUEST);
