@@ -34,7 +34,7 @@ class edificios_controller extends REST_Controller
         $list = $this->clEdificios->getEdificios($filtros);
         if ($list) {
             $result = array('resp' => $list);
-            $this->response($result, REST_Controller::HTTP_OK);
+            $this->response($list, REST_Controller::HTTP_OK);
         } else {
             $this->response("No hay registros",  REST_Controller::HTTP_NOT_FOUND);
         }

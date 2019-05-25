@@ -87,3 +87,6 @@ $route['Recursos/borrarDatos']['POST'] = 'recurso_controller/borrarDatos';
 $route['Usuarios/listado']['GET'] = 'usuarios_controller/listaUsuarios';
 $route['Usuarios/guardarDatos']['POST'] = 'usuarios_controller/guardarDatos';
 $route['Usuarios/borrarDatos']['POST'] = 'usuarios_controller/borrarDatos';
+
+//Funciones
+$route['Fun/Login']['POST'] = 'funciones_controller/Login';
