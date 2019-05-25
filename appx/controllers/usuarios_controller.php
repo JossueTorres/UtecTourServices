@@ -32,7 +32,7 @@ class usuarios_controller extends REST_Controller
         $list = $this->clUsuarios->getListaUsuarios($filtros);
         if ($list) {
             $result = array('resp' => $list);
-            $this->response($result, REST_Controller::HTTP_OK);
+            $this->response($list, REST_Controller::HTTP_OK);
         } else {
             $this->response("No hay registros",  REST_Controller::HTTP_NOT_FOUND);
         }
